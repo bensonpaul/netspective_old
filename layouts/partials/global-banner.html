@@ -1,0 +1,46 @@
+<!-- banner Start -->
+	<section id="global-header">
+	  <div class="container">
+	    <div class="row">
+	      <div class="col-md-12">
+	        <div class="block-section">
+
+	           <h1>{{ .Params.banner_title | safeHTML }}</h1>
+               <p>{{ .Params.banner_content | safeHTML }}<br></p>
+               	{{ if isset .Params "banner_image" }}
+                <p><img src="{{ .Site.BaseURL }}{{ .Params.banner_image }}" alt="{{ .Title }}"></p>
+	            {{ end }}
+                {{ if isset .Params "banner_sub_title" }}	            
+	                <p><b>{{ .Params.banner_sub_title | safeHTML }}<br></b></p>
+	            {{ end }}
+	            
+	            {{ range .Data.Pages }}
+	            {{ if (isset .Params "section_icon_image")}}
+	                <div class="banner-icon">                
+		                <div class="icon-image"><a class="scroll-to" href="#{{ .Slug }}"><img src="{{ .Site.BaseURL }}{{ .Params.section_icon_image }}" alt="{{ .Title }}"></a></div>
+		                <div class="icon-title">
+		                	<a class="scroll-to" href="#{{ .Slug }}">
+		                		{{ if isset .Params "section_icon_label" }}
+		                		<span>{{ .Params.section_icon_label }}</span>
+		                		{{ else }}
+		                		<span>{{ .Title }}</span>
+		                		{{ end }}
+		                	</a>
+		                </div>	               
+	                </div>
+	            {{ end }}
+	            {{ end }}
+                <p>
+                {{ if (isset .Params "banner_register_button_name")}}
+		            <a class="btn btn-primary btn-large btn-banner btn-register" href="{{ .Params.banner_register_button_link }}" target="_blank">{{ .Params.banner_register_button_name }}</a>	                
+                {{ end }}	
+
+                {{ if (isset .Params "banner_button_name")}}
+		            <a class="btn btn-primary btn-large btn-banner" href="{{ .Params.banner_button_link }}" target="_blank">{{ .Params.banner_button_name }}</a>	                
+                {{ end }}	
+                </p>             
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</section>

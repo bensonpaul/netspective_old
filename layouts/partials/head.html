@@ -1,0 +1,87 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="{{ delimit .Keywords ", " }}" name="keywords">
+<base href="{{.Site.BaseURL}}">
+{{ if .IsHome }}
+<meta name="title" content="{{.Site.Params.title}}" />
+<meta
+name="description" content="{{ .Site.Params.description }}"/>
+{{ else }}
+<meta name="title" content="{{.Params.metatitle}}" />
+<meta
+name="description" content="{{.Params.description}}"/>
+{{ end }}
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+{{ if .IsHome }}
+<meta property="og:title" content="{{.Site.Params.metatitle}}" />
+<meta content="{{ .Site.Params.description }}" property="og:description">
+{{ else }}
+<meta property="og:title" content="{{.Params.metatitle}}" />
+<meta property="og:description" content="{{.Params.description}}">
+{{ end }}
+<meta property="og:site_name" content="Netspective" />
+<meta property="og:image" content="https://www.netspective.com/{{.Params.path}}" />
+<meta name="twitter:card" content="summary" />
+<meta property="og:image:width" content="1024" />
+<meta property="og:image:height" content="683" />
+{{ if .IsHome }}
+<meta name="twitter:title" content="{{.Site.Params.metatitle}}" />
+<meta name = "twitter:description" content="{{ .Site.Params.description }}" property="og:description">
+{{ else }}
+<meta name="twitter:title" content="{{.Params.metatitle}}" />
+<meta name = "twitter:description" property="og:description" content="{{.Params.description}}">
+{{ end }}
+<!-- robots -->
+<!-- you may configure it in the front matter of the page or in site params -->
+{{ if or (isset .Params "robots") (isset .Site.Params "robots") }}
+<meta name="robots" content="{{ with .Params.robots }}{{ . }}{{ else }}{{ .Site.Params.robots }}{{ end }}">
+{{ end }}
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory
+     or place appropriate <link .../> etc in favicon.html partial -->
+{{ partial "favicon.html" . }}
+<title>{{ .Title }}</title>
+{{ .Hugo.Generator }}
+
+
+
+<!-- CSS -->
+<link rel="stylesheet" href="{{ .Site.BaseURL }}css/owl.carousel.css" />
+<link rel="stylesheet" href="{{ .Site.BaseURL }}css/bootstrap.min.css" />
+<link rel="stylesheet" href="{{ .Site.BaseURL }}css/font-awesome.min.css" />
+<link rel="stylesheet" href="{{ .Site.BaseURL }}css/airspace-local-fonts.css" />
+<link rel="stylesheet" href="{{ .Site.BaseURL }}css/airspace.css" />
+<link rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css" />
+<link rel="stylesheet" href="{{ .Site.BaseURL }}css/ionicons.min.css" />
+<link rel="stylesheet" href="{{ .Site.BaseURL }}css/animate.css" />
+<link rel="stylesheet" href="{{ .Site.BaseURL }}css/responsive.css" />
+<link rel="stylesheet" href="{{ .Site.BaseURL }}css/syntax.css" />
+<link rel="stylesheet" href="{{ .Site.BaseURL }}css/asAccordion.css" />
+
+<!-- Js -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+<script src="{{ .Site.BaseURL }}js/bootstrap.min.js"></script>
+<script src="{{ .Site.BaseURL }}js/owl.carousel.min.js"></script>
+<script src="{{ .Site.BaseURL }}js/plugins.js"></script>
+<script src="{{ .Site.BaseURL }}js/min/waypoints.min.js"></script>
+<script src="{{ .Site.BaseURL }}js/jquery.counterup.js"></script>
+<script src="{{ .Site.BaseURL }}js/jquery-asAccordion.js"></script>
+
+
+<script src="{{ .Site.BaseURL }}js/main.js"></script>
+
+<!--
+/*
+ * Airspace
+ * Ported to Hugo by Giacomo Mariani
+ * https://github.com/karju-dev/airspace-hugo
+ * Based on the original Jakyll porting by Andrew Lee
+ * https://github.com/luminousrubyist/airspace-jekyll
+ * Designed and Developed by ThemeFisher
+ * https://themefisher.com/
+ *
+ */
+-->
+{{ template "_internal/google_analytics.html" . }}
